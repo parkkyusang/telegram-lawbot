@@ -12,6 +12,9 @@ gpt = OpenAI(api_key=openai_api_key)
 
 @client.on(events.NewMessage)
 async def handler(event):
+    if event.out:
+        return  # 🛑 내가 보낸 메시지는 무시!
+
     question = event.raw_text.strip()
     if question:
         response = gpt.chat.completions.create(
