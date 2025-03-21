@@ -12,9 +12,8 @@ gpt = OpenAI(api_key=openai_api_key)
 
 @client.on(events.NewMessage)
 async def handler(event):
-    text = event.raw_text.strip()
-    if text.startswith("/law"):
-        question = text.replace("/law", "").strip()
+    question = event.raw_text.strip()
+    if question:
         response = gpt.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": question}]
