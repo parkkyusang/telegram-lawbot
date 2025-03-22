@@ -13,7 +13,7 @@ gpt = OpenAI(api_key=openai_api_key)
 @client.on(events.NewMessage)
 async def handler(event):
     if event.out:
-        return  # 🛑 내가 보낸 메시지는 무시!
+        return  # 무한 루프 방지
 
     question = event.raw_text.strip()
     if question:
